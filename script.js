@@ -67,35 +67,3 @@ window.addEventListener("load", () => {
       notCompletedCountElement.textContent = `Pending: ${pendingTasks}`;
     }
   });
-
-  function renderTasks() {
-    const taskList = document.getElementById('task-list');
-    taskList.innerHTML = '';
-    let todoCount = 0;
-    let completedCount = 0;
-
-    tasks.forEach((task, index) => {
-        const listItem = document.createElement('li');
-
-        if (task.completed) {
-            listItem.classList.add('completed');
-            completedCount++;
-        } else {
-            todoCount++;
-        }
-
-        if (task.deadline) {
-            const deadline = new Date(task.deadline);
-            const timeRemaining = deadline - Date.now();
-
-            if (timeRemaining < 0 && !task.completed) {
-                listItem.classList.add('approaching-deadline');
-            } else if (timeRemaining < 3600000 && !task.completed) {
-                alert('The deadline for the task is approaching!');
-            }
-        }
-        const text = document.createElement('span');
-        text.textContent = task.text;
-        listItem.appendChild(text);
-    });
-}
