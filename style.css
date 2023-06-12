@@ -57,6 +57,21 @@
   #task-submit:active {
     opacity: 0.9;
   }
+  .task .content .deadline {
+    font-size: 1rem;
+    color: black;
+    margin-top: 0.5rem;
+  }
+  .task .content .deadline.red {
+    color: red;
+  }
+  #task-deadline{
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: rem;
+    margin-right: 2rem;
+  }
+    
   .container {
     flex: 0% 1 0%;
     max-width: 800px;
