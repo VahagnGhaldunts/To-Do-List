@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const app = express();
+const express = require('express')
 
 mongoose
   .connect("mongodb://localhost:27017/mydatabase", {
@@ -11,7 +13,6 @@ mongoose
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
-
 
 const taskSchema = new mongoose.Schema({
   title: String,
@@ -164,7 +165,6 @@ const taskDeadline = document.getElementById("task-deadline");
 const completedCount = document.getElementById("completed-count");
 const pendingCount = document.getElementById("pending-count");
 
-
 const createTaskElement = (task) => {
   const taskDiv = document.createElement("div");
   taskDiv.classList.add("task");
@@ -182,7 +182,6 @@ const createTaskElement = (task) => {
   tasksContainer.appendChild(taskDiv);
 };
 
-
 const fetchTasks = async () => {
   const response = await fetch("/api/tasks");
   const tasks = await response.json();
@@ -190,7 +189,6 @@ const fetchTasks = async () => {
   tasksContainer.innerHTML = "";
   tasks.forEach((task) => createTaskElement(task));
 };
-
 
 const updateTaskCount = async () => {
   const completedResponse = await fetch("/api/tasks/completed");
@@ -202,7 +200,6 @@ const updateTaskCount = async () => {
   completedCount.textContent = `Completed: ${completedData.count}`;
   pendingCount.textContent = `Pending: ${incompleteData.count}`;
 };
-
 
 const addTask = async (e) => {
   e.preventDefault();
@@ -231,7 +228,6 @@ const addTask = async (e) => {
   updateTaskCount();
 };
 
-
 const completeTask = async (taskId) => {
   const response = await fetch(`/api/tasks/${taskId}/completed`, {
     method: "PATCH",
@@ -249,7 +245,6 @@ const completeTask = async (taskId) => {
 
   updateTaskCount();
 };
-
 
 const deleteTask1 = async (taskId) => {
   const response = await fetch(`/api/tasks/${taskId}`, {
@@ -279,7 +274,6 @@ tasksContainer.addEventListener("click", (e) => {
   }
 });
 
-
 fetchTasks();
 updateTaskCount();
 
@@ -292,7 +286,6 @@ const fetchTasks1 = async () => {
     console.error("Error fetching tasks:", error);
   }
 };
-
 
 const createTask = async (title, deadline) => {
   try {
@@ -310,7 +303,6 @@ const createTask = async (title, deadline) => {
   }
 };
 
-
 const updateTask = async (id, title, deadline, completed) => {
   try {
     const response = await fetch(`/api/tasks/${id}`, {
@@ -327,7 +319,6 @@ const updateTask = async (id, title, deadline, completed) => {
   }
 };
 
-
 const deleteTask = async (id) => {
   try {
     const response = await fetch(`/api/tasks/${id}`, {
@@ -339,7 +330,6 @@ const deleteTask = async (id) => {
     console.error("Error deleting task:", error);
   }
 };
-
 
 const updateTaskDeadline = async (id, deadline) => {
   try {
@@ -373,7 +363,6 @@ const updateTaskStatus = async (id, completed) => {
   }
 };
 
-
 const fetchCompletedTaskCount = async () => {
   try {
     const response = await fetch("/api/tasks/completed");
@@ -384,7 +373,6 @@ const fetchCompletedTaskCount = async () => {
   }
 };
 
-
 const fetchIncompleteTaskCount = async () => {
   try {
     const response = await fetch("/api/tasks/incomplete");
@@ -394,7 +382,6 @@ const fetchIncompleteTaskCount = async () => {
     console.error("Error fetching incomplete task count:", error);
   }
 };
-
 
 const fetchTasksWithDeadlin = async () => {
   try {
