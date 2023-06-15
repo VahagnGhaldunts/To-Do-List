@@ -38,6 +38,7 @@ window.addEventListener("load", () => {
     task_delete_button.classList.add("Delete");
     task_delete_button.innerHTML = "Delete";
     const task_pending_button = document.createElement("button");
+    
     task_pending_button.classList.add("done");
     task_pending_button.innerHTML = "done";
     task_actions_div.appendChild(task_edit_botton);
